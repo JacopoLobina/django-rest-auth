@@ -1,4 +1,6 @@
-from django.conf.urls import url
+from django.conf import re_path
+#from django.conf.urls import url
+
 
 from rest_auth.views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,
@@ -7,14 +9,14 @@ from rest_auth.views import (
 
 urlpatterns = [
     # URLs that do not require a session or valid token
-    url(r'^password/reset/$', PasswordResetView.as_view(),
-        name='rest_password_reset'),
-    url(r'^password/reset/confirm/$', PasswordResetConfirmView.as_view(),
-        name='rest_password_reset_confirm'),
-    url(r'^login/$', LoginView.as_view(), name='rest_login'),
+    re_path(r'^password/reset/$', PasswordResetView.as_view(),
+            name='rest_password_reset'),
+    re_path(r'^password/reset/confirm/$', PasswordResetConfirmView.as_view(),
+            name='rest_password_reset_confirm'),
+    re_path(r'^login/$', LoginView.as_view(), name='rest_login'),
     # URLs that require a user to be logged in with a valid session / token.
-    url(r'^logout/$', LogoutView.as_view(), name='rest_logout'),
-    url(r'^user/$', UserDetailsView.as_view(), name='rest_user_details'),
-    url(r'^password/change/$', PasswordChangeView.as_view(),
-        name='rest_password_change'),
+    re_path(r'^logout/$', LogoutView.as_view(), name='rest_logout'),
+    re_path(r'^user/$', UserDetailsView.as_view(), name='rest_user_details'),
+    re_path(r'^password/change/$', PasswordChangeView.as_view(),
+            name='rest_password_change'),
 ]
